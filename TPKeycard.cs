@@ -46,7 +46,6 @@ namespace _012Teleport
                 Spawn(ev.Pickup.Position);
                 Room[] roomObjects = (Room[])UnityEngine.Object.FindObjectsOfType(typeof(Room));
                 List<Room> roomsFiltered = new List<Room>();
-                Log.Debug(roomObjects.Length);
 
                 foreach (Room room in roomObjects)
                 {
@@ -86,7 +85,8 @@ namespace _012Teleport
                             room.Type != RoomType.EzUpstairsPcs &&
                             room.Type != RoomType.EzShelter &&
                             room.Type != RoomType.Pocket &&
-                            room.Type != RoomType.Surface
+                            room.Type != RoomType.Surface &&
+                            room.Type != RoomType.EzCrossing
                     )
                     {
                             roomsFiltered.Add(room);
