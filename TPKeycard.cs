@@ -50,22 +50,47 @@ namespace _012Teleport
 
                 foreach (Room room in roomObjects)
                 {
-                    if (room.Zone != ZoneType.Surface && room.Zone != ZoneType.Unspecified)
-                    {
-                        if (
-                            room.Type != RoomType.Pocket &&
-                            room.Type != RoomType.HczHid &&
-                            room.Type != RoomType.Hcz939 &&
-                            room.Type != RoomType.Hcz106 &&
+                    if 
+                    (
                             room.Type != RoomType.LczCurve &&
+                            room.Type != RoomType.Lcz012 &&
+                            room.Type != RoomType.LczCafe &&
+                            room.Type != RoomType.LczToilets &&
+                            room.Type != RoomType.LczAirlock &&
+                            room.Type != RoomType.Lcz173 &&
+                            room.Type != RoomType.LczClassDSpawn &&
+                            room.Type != RoomType.LczChkpB &&
+                            room.Type != RoomType.LczGlassBox &&
+                            room.Type != RoomType.LczChkpA &&
+                            room.Type != RoomType.Hcz079 &&
+                            room.Type != RoomType.HczEzCheckpoint &&
+                            room.Type != RoomType.Hcz939 &&
+                            room.Type != RoomType.HczHid &&
+                            room.Type != RoomType.Hcz049 &&
+                            room.Type != RoomType.HczChkpA &&
+                            room.Type != RoomType.Hcz106 &&
+                            room.Type != RoomType.HczNuke &&
+                            room.Type != RoomType.HczTesla &&
+                            room.Type != RoomType.HczChkpB &&
                             room.Type != RoomType.HczCurve &&
+                            room.Type != RoomType.HczServers &&
+                            room.Type != RoomType.Hcz096 &&
+                            room.Type != RoomType.EzVent &&
+                            room.Type != RoomType.EzIntercom &&
+                            room.Type != RoomType.EzDownstairsPcs &&
+                            room.Type != RoomType.EzCurve &&
+                            room.Type != RoomType.EzPcs &&
                             room.Type != RoomType.EzCollapsedTunnel &&
-                            room.Type != RoomType.EzVent
-                            )
-                        {
+                            room.Type != RoomType.EzConference &&
+                            room.Type != RoomType.EzCafeteria &&
+                            room.Type != RoomType.EzUpstairsPcs &&
+                            room.Type != RoomType.EzShelter &&
+                            room.Type != RoomType.Pocket &&
+                            room.Type != RoomType.Surface
+                    )
+                    {
                             roomsFiltered.Add(room);
                             //Log.Debug(room.Name);
-                        }
                     }
                 }
                 Room randomRoom = roomsFiltered[UnityEngine.Random.Range(0, roomsFiltered.Count - 1)];
