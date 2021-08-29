@@ -96,12 +96,11 @@ namespace _012Teleport
                 Room randomRoom = roomsFiltered[UnityEngine.Random.Range(0, roomsFiltered.Count - 1)];
                 Timing.CallDelayed(0.5f, () =>
                 {
-                    ev.Player.Position += Vector3.up * -10f;
                     foreach (Item item in ev.Player.Items)
                     {
                         if (Check(item))
                         {
-                            ev.Player.DropItem(item);
+                            ev.Player.RemoveItem(item);
                         }
                     }
                 });
