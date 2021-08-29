@@ -13,10 +13,21 @@ namespace _012Teleport
 {
     public class TPKeycard : CustomWeapon
     {
+        List<String> KeywordsToFilter = new List<string>();
         public override void Init()
         {
             Exiled.Events.Handlers.Player.PickingUpItem += OnPickingUpItem;
             Exiled.Events.Handlers.Player.Shooting += OnShooting;
+
+            KeywordsToFilter.Add("Tunnel");
+            KeywordsToFilter.Add("Pocket");
+            KeywordsToFilter.Add("Hid");
+            KeywordsToFilter.Add("106");
+            KeywordsToFilter.Add("LCZ_Curve");
+            KeywordsToFilter.Add("939");
+            KeywordsToFilter.Add("Outside");
+            KeywordsToFilter.Add("HCZ_Curve");
+            KeywordsToFilter.Add("Shelter");
 
             base.Init();
         }
@@ -47,10 +58,20 @@ namespace _012Teleport
                 Spawn(ev.Pickup.Position);
                 Room[] roomObjects = (Room[])UnityEngine.Object.FindObjectsOfType(typeof(Room));
                 List<Room> roomsFiltered = new List<Room>();
+
                 foreach (Room room in roomObjects)
                 {
-                    if (room.Zone != Exiled.API.Enums.ZoneType.Surface && room.Zone != Exiled.API.Enums.ZoneType.Unspecified && !room.Name.Contains("EZ_CollapsedTunnel") && !room.Name.Contains("PocketWorld") && !room.Name.Contains("Hid"))
-                        roomsFiltered.Add(room);
+                    if (room.Zone == Exiled.API.Enums.ZoneType.Surface || room.Zone == Exiled.API.Enums.ZoneType.Unspecified)
+                        return;
+                    foreach(string keyword in KeywordsToFilter)
+                    {
+                        if(!room.name.Contains(keyword))
+                        {
+                            roomsFiltered.Add(room);
+                            Log.Debug(room.Name);
+                        }
+                    }
+                        
                 }
                 Room randomRoom = roomsFiltered[UnityEngine.Random.Range(0, roomsFiltered.Count - 1)];
                 ev.Player.Position = randomRoom.Position + Vector3.up * 1.5f;
